@@ -7,13 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactService", "ContactSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportService", "ReportService", "{EFCCBC01-93FD-4379-B2AE-E1DE0376AD80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactService.Api", "ContactService\ContactService.Api\ContactService.Api.csproj", "{6192EF10-1E97-488F-9B72-7F91C91132C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactService.Api", "ContactService\ContactService.Api\ContactService.Api.csproj", "{6192EF10-1E97-488F-9B72-7F91C91132C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactService.Application", "ContactService\ContactService.Application\ContactService.Application.csproj", "{D5DD790A-EC9C-4C25-93C9-FDD401C5E128}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactService.Application", "ContactService\ContactService.Application\ContactService.Application.csproj", "{D5DD790A-EC9C-4C25-93C9-FDD401C5E128}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactService.Infrastructure", "ContactService\ContactService.Infrastructure\ContactService.Infrastructure.csproj", "{DB167867-ED4B-4637-B746-4FDA0AA7EB1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactService.Infrastructure", "ContactService\ContactService.Infrastructure\ContactService.Infrastructure.csproj", "{DB167867-ED4B-4637-B746-4FDA0AA7EB1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactService.Domain", "ContactService\ContactService.Domain\ContactService.Domain.csproj", "{91CF0589-4F0B-416A-A645-422B577EC742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactService.Domain", "ContactService\ContactService.Domain\ContactService.Domain.csproj", "{91CF0589-4F0B-416A-A645-422B577EC742}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "..\..\Setur-Assessment-Base\Core\Core.csproj", "{D69D5127-9FB9-4D81-85BE-A1AA9C7CD6B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{91CF0589-4F0B-416A-A645-422B577EC742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91CF0589-4F0B-416A-A645-422B577EC742}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91CF0589-4F0B-416A-A645-422B577EC742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D69D5127-9FB9-4D81-85BE-A1AA9C7CD6B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69D5127-9FB9-4D81-85BE-A1AA9C7CD6B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69D5127-9FB9-4D81-85BE-A1AA9C7CD6B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69D5127-9FB9-4D81-85BE-A1AA9C7CD6B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

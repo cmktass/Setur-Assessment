@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ContactService.Application\ContactService.Application.csproj" />
+  </ItemGroup>
+
 </Project>
