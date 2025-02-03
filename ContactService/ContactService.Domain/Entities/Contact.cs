@@ -12,5 +12,7 @@ namespace ContactService.Domain.Entities
         public string FirstName { get; }
         public string LastName { get;  }
         public string Company { get;  }
+
+        public List<ContactInfo> ContactInfos { get; }
     }
 }

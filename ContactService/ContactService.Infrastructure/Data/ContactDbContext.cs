@@ -1,6 +1,4 @@
-﻿using ContactService.Domain.Entities;
-using Core.BaseDbContext;
-using Microsoft.EntityFrameworkCore;
+﻿using Core.BaseDbContext;
 
 namespace ContactService.Infrastructure.Data
 {

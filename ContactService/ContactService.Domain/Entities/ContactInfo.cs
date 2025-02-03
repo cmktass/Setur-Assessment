@@ -7,7 +7,7 @@ namespace ContactService.Domain.Entities
         public Guid ContactId { get; set; }
         public Contact Contact { get; set; }
         public string Content { get; set; }
-        public ContactType Type { get; set; }
+        public ContactType ContactType { get; set; }
         public int ContactTypeId { get; set; }
     }
 }
