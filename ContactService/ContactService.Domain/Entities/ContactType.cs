@@ -1,5 +1,4 @@
-﻿using Core.CoreDomain;
-
+﻿
 namespace ContactService.Domain.Entities
 {
     public class ContactType : Entity<int>

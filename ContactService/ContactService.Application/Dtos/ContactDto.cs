@@ -28,7 +28,7 @@ namespace ContactService.Application.Dtos
 
     public class ContactInfoDto
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Type { get; set; } // "phone", "email", "location"
         public string Value { get; set; }
     }

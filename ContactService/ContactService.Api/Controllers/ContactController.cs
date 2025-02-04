@@ -28,6 +28,13 @@ namespace ContactService.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<ContactDto>>> GetContactWithInfos([FromHeader]Guid id)
+        {
+            var contacts = await _mediator.Send(new GetContactWithInfosQuery(id));
+            return Ok(contacts);
+        }
+
+        [HttpGet("{id}")]
         public async Task<ActionResult<ContactDto>> GetContact([FromHeader]Guid id)
         {
             var contact = await _mediator.Send(new GetContactByIdQuery(id));
@@ -62,6 +69,13 @@ namespace ContactService.Api.Controllers
         {
             await _mediator.Send(new RemoveContactInfoCommand(id, infoId));
             return NoContent();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> PerepareContactInfoReport()
+        {
+            var message = await _mediator.Send(new PrepareContactInfoReportCommand());
+            return Ok(message);
         }
     }
 }

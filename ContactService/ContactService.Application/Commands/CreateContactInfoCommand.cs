@@ -22,8 +22,8 @@ namespace ContactService.Application.Commands
             var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == request.PersonId && !c.IsDeleted);
             if(contact is null)
                 throw new Exception("Contact not found");
-           contact.ContactInfos.Add(new ContactInfo(request.Value, request.ContactTypeId));
-           return await _dbContext.SaveChangesAsync(cancellationToken);
+            contact.AddContactInfo(new ContactInfo(request.Value, request.ContactTypeId));
+            return await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 

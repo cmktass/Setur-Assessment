@@ -18,10 +18,10 @@ namespace ContactService.Application.Commands
         }
         public async Task Handle(RemoveContactInfoCommand request, CancellationToken cancellationToken)
         {
-            var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == request.Id);
+            var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == request.Id && !c.IsDeleted);
             if (contact is null)
                 throw new Exception("Contact not found");
-            var contactInfo = contact.ContactInfos.FirstOrDefault(ci => ci.Id == request.InfoId);
+            var contactInfo = contact.ContactInfos.FirstOrDefault(ci => ci.Id == request.InfoId && !ci.IsDeleted);
             if (contactInfo is null)
                 throw new Exception("Contact info not found");
             contact.ContactInfos.Remove(contactInfo);

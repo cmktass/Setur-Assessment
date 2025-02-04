@@ -14,7 +14,7 @@ namespace ContactService.Application.Commands
         }
         public async Task<int> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
-            var contact = await _dbContext.Contacts.Include(c => c.ContactInfos).FirstOrDefaultAsync(x => x.Id == request.id);
+            var contact = await _dbContext.Contacts.Include(c => c.ContactInfos).FirstOrDefaultAsync(x => x.Id == request.id && !x.IsDeleted);
             if (contact is null)
                 throw new Exception("Contact not found");
             _dbContext.Contacts.Remove(contact);
