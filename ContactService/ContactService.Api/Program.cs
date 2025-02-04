@@ -1,4 +1,6 @@
 
+using AutoMapper;
+
 namespace ContactService.Api
 {
     public class Program
@@ -13,7 +15,7 @@ namespace ContactService.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddSingleton<IMapper, Mapper>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,8 +1,9 @@
-﻿using Core.BaseDbContext;
+﻿using ContactService.Application;
+using Core.BaseDbContext;
 
 namespace ContactService.Infrastructure.Data
 {
-    public class ContactDbContext : BaseDbContext
+    public class ContactDbContext : BaseDbContext, IContactServiceDbContext
     {
         public ContactDbContext(DbContextOptions<ContactDbContext> options) : base(options) { }
 

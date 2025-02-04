@@ -9,5 +9,11 @@ namespace ContactService.Domain.Entities
         public string Content { get; set; }
         public ContactType ContactType { get; set; }
         public int ContactTypeId { get; set; }
+
+        public ContactInfo(string content, int contactTypeId)
+        {
+            Content = content;
+            ContactTypeId = contactTypeId;
+        }
     }
 }
