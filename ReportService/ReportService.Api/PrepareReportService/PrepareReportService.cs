@@ -22,7 +22,7 @@ namespace ReportService.Api.PrepareReportBackgroundService
                 {
                     var _reportDbContext = scope.ServiceProvider.GetRequiredService<ReportDbContext>();
                     var result = await _reportDbContext.Reports.Where(x => !x.IsDeleted && x.ReportState == "Preparing").ToListAsync();
-                    if (result.Any())
+                    if (result != null)
                     {
                         result.ForEach(report =>
                         {

@@ -13,22 +13,22 @@ namespace ContactService.Infrastructure.Data.DummyData
         private static readonly List<string> FirstNames = new()
         {
         "Ali", "Ayşe", "Mehmet", "Zeynep", "Mustafa", "Fatma", "Emre", "Elif", "Burak", "Selin",
-        "Ahmet", "Hasan", "Hüseyin", "İbrahim", "Osman", "Kemal", "Ömer", "Süleyman", "Cem", "Barış",
+        "Ahmet", "Hasan", "Hüseyin", "İbrahim", "Osman", "Kemal", "Ömer", "Süleyman", "Barış",
         "Serkan", "Murat", "Hakan", "Ramazan", "Sami", "Onur", "Taha", "Faruk", "Özgür", "Sinan",
         "Levent", "Uğur", "Kaan", "Can", "Deniz", "Bora", "Eren", "Furkan", "Mete", "Rıza",
         "Merve", "Derya", "Esra", "Gizem", "Ceyda", "Büşra", "İrem", "Seda", "Aylin", "Gamze",
-        "Aslı", "Ceren", "Neslihan", "Özge", "Sevgi", "Yasemin", "Sinem", "Hande", "Gül"
+        "Aslı", "Ceren", "Neslihan", "Özge", "Sevgi", "Yasemin", "Sinem", "Hande", "Gül", "Cem"
         };
 
         private static readonly List<string> LastNames = new()
         {
             "Yılmaz", "Kaya", "Demir", "Çelik", "Şahin", "Öztürk", "Koç", "Aydın", "Eren", "Aksoy",
             "Arslan", "Polat", "Güneş", "Bozkurt", "Keskin", "Kurt", "Aslan", "Yıldırım", "Can", "Tan",
-            "Erdoğan", "Özkan", "Avcı", "Doğan", "Tekin", "Bulut", "Gül", "Aktaş", "Yüksel", "Çetin",
+            "Erdoğan", "Özkan", "Avcı", "Doğan", "Tekin", "Bulut", "Gül", "Yüksel", "Çetin", "Aktaş"
         };
         private static readonly List<string> Companies = new()
         {
-            "TechCorp", "SoftTech", "Global Solutions", "DataWorks", "CyberNet", "InnovateX", "GreenTech", "Cloudify", "NeoSoft", "NextGen"
+            "TechCorp", "SoftTech", "Global Solutions", "DataWorks", "CyberNet", "InnovateX", "GreenTech", "Cloudify", "NeoSoft", "NextGen", "Setur"
         };
 
         private static readonly List<string> PhoneNumbers = new()
@@ -48,7 +48,7 @@ namespace ContactService.Infrastructure.Data.DummyData
         {
             "Istanbul", "Ankara", "Izmir", "Bursa",
             "Antalya", "Konya", "Adana", "Mersin",
-            "Trabzon", "Samsun", "Erzurum", "Diyarbakir",
+            "Trabzon", "Samsun", "Erzurum", "Diyarbakir"
         };
         public static List<Contact> Contats { get; set; } = new List<Contact>();
         public static List<ContactInfo> ContactInfos { get; set; } = new List<ContactInfo>();
@@ -57,7 +57,7 @@ namespace ContactService.Infrastructure.Data.DummyData
             for (int i = 0; i < 50; i++)
             {
                 var random = new Random();
-                var contact = new Contact(FirstNames[random.Next(FirstNames.Count)], LastNames[random.Next(FirstNames.Count)], Companies[random.Next(Companies.Count)]);
+                var contact = new Contact(FirstNames[random.Next(FirstNames.Count)], LastNames[random.Next(LastNames.Count)], Companies[random.Next(Companies.Count)]);
                 Contats.Add(contact);
             }
             return Contats;
