@@ -1,10 +1,4 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ContactService.Application.Commands
 {
     public record RemoveContactInfoCommand(Guid Id, int InfoId) : IRequest;

@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using ContactService.Application.Dtos;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace ContactService.Application.Queries
 {
     public record GetContactWithInfosQuery(Guid Id) : IRequest<ContactDto>;

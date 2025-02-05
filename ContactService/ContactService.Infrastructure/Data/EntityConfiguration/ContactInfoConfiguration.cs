@@ -1,4 +1,7 @@
 ﻿
+using ContactService.Infrastructure.Data.DummyData;
+using Microsoft.EntityFrameworkCore;
+
 namespace ContactService.Infrastructure.Data.EntityConfiguration
 {
     public class ContactInfoConfiguration : IEntityTypeConfiguration<ContactInfo>

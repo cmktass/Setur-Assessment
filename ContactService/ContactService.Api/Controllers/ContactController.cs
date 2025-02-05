@@ -1,16 +1,17 @@
-﻿using AutoMapper;
+﻿
 using ContactService.Api.Requests;
 using ContactService.Application.Commands;
 using ContactService.Application.Dtos;
 using ContactService.Application.Queries;
 using ContactService.Domain.Entities;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactService.Api.Controllers
 {
     [ApiController]
-    [Route("api/contacts")]
+    [Route("api/[controller]/[action]")]
     public class ContactController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,14 +29,14 @@ namespace ContactService.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<ContactDto>>> GetContactWithInfos([FromHeader]Guid id)
+        public async Task<ActionResult<IEnumerable<ContactDto>>> GetContactWithInfos([FromRoute] Guid id)
         {
             var contacts = await _mediator.Send(new GetContactWithInfosQuery(id));
             return Ok(contacts);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ContactDto>> GetContact([FromHeader]Guid id)
+        public async Task<ActionResult<ContactDto>> GetContact([FromRoute] Guid id)
         {
             var contact = await _mediator.Send(new GetContactByIdQuery(id));
             if (contact == null) return NotFound();
@@ -49,7 +50,7 @@ namespace ContactService.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteContact([FromHeader] Guid id)
+        public async Task<ActionResult> DeleteContact([FromRoute] Guid id)
         {
             var result = await _mediator.Send(new DeleteContactCommand(id));
             if (result == 0) return NotFound();
@@ -65,7 +66,7 @@ namespace ContactService.Api.Controllers
         }
 
         [HttpDelete("{id}/info/{infoId}")]
-        public async Task<ActionResult> RemoveContactInfo([FromHeader]Guid id, int infoId)
+        public async Task<ActionResult> RemoveContactInfo([FromRoute] Guid id, int infoId)
         {
             await _mediator.Send(new RemoveContactInfoCommand(id, infoId));
             return NoContent();

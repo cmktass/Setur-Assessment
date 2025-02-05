@@ -1,5 +1,6 @@
 ﻿using ContactService.Application;
 using ContactService.Infrastructure.Data;
+using ContactService.Infrastructure.Data.DataSeeder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,7 +15,7 @@ namespace ContactService.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            string connectionString = configuration.GetConnectionString("PostgresConnection");
             services.AddDbContext<ContactDbContext>(options =>
             {
                 options.UseNpgsql(connectionString);

@@ -1,4 +1,8 @@
-﻿namespace ContactService.Infrastructure.Data.EntityConfiguration
+﻿using ContactService.Infrastructure.Data.DummyData;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
+
+namespace ContactService.Infrastructure.Data.EntityConfiguration
 {
     public class ContactConfiguration : IEntityTypeConfiguration<Contact>
     {

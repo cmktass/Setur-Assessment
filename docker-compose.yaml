@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  postgres-sql:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - docker-examples-network
+    hostname: postgres-host-docker-examples
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672" # AMQP protokolü için
+      - "15672:15672" # Yönetim paneli için
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - docker-examples-network
+
+networks:
+  docker-examples-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  rabbitmq_data:

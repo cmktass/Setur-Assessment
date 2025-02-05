@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using ContactService.Application.Dtos;
-using ContactService.Domain.Entities;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace ContactService.Application.Queries
 {
     public record GetContactsQuery() : IRequest<List<ContactDto>>;

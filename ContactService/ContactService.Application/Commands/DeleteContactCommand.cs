@@ -1,6 +1,4 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace ContactService.Application.Commands
 {
     public record DeleteContactCommand(Guid id) : IRequest<int>;

@@ -9,17 +9,13 @@ namespace Core.MasstransitConfiguration
 {
     public class Publisher  
     {
-        private readonly IPublishEndpoint _publishEndpoint;
-        public Publisher(IPublishEndpoint publishEndpoint)
+        
+        public Publisher()
         {
-            _publishEndpoint = publishEndpoint;
+            
         }
         public Task Publish<T>(T message) where T : class
         {
-            _publishEndpoint.Publish(message, context =>
-            {
-                context.CorrelationId = NewId.NextGuid();
-            });
             return Task.CompletedTask;
         }
     }

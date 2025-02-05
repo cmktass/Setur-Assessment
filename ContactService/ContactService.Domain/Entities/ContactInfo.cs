@@ -14,5 +14,12 @@ namespace ContactService.Domain.Entities
             Content = content;
             ContactTypeId = contactTypeId;
         }
+        public ContactInfo(int id, Guid contactId, string content, int contactTypeId)
+        {
+            Id = id;
+            ContactId = contactId;
+            Content = content;
+            ContactTypeId = contactTypeId;
+        }
     }
 }

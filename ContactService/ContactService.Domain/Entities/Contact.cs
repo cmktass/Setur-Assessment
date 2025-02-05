@@ -16,6 +16,13 @@ namespace ContactService.Domain.Entities
             LastName = lastName;
             Company = company;
         }
+        public Contact(Guid id, string firstName, string lastName, string company)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Company = company;
+        }
 
         public static Contact Create(string firstName, string lastName, string company)
         {
