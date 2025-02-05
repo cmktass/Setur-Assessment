@@ -15,7 +15,7 @@ namespace ReportService.Api.Reports
         }
         public async Task<List<GetAllReportsResponse>> Handle(GetAllReportQuery request, CancellationToken cancellationToken)
         {
-            var repots = await _dbContext.Reports.Include(x => x.ReportDetails).ToListAsync(cancellationToken: cancellationToken);
+            var repots = await _dbContext.Reports.Include(x => x.ReportDetails).OrderByDescending(x => x.CreatedDate).ToListAsync(cancellationToken: cancellationToken);
             if(repots is null || repots.Count == 0)
                 throw new BusinessException("No reports found", HttpStatusCode.NotFound);
             return _mapper.Map<List<GetAllReportsResponse>>(repots);

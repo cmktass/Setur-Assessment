@@ -3,7 +3,7 @@ using ReportService.Api.Reports;
 
 namespace ReportService.Api.Reports
 {
-    public record GetAllReportsResponse(Guid Id, string ReportState, List<GetAllReportResponse> ReportDetails);
+    public record GetAllReportsResponse(Guid Id, string ReportState, DateTime CreatedDate, List<GetAllReportResponse> ReportDetails);
     public record GetAllReportResponse(string Region, int RegisteredContactCount, int RegisteredPhoneNumberCount);
     public record GetReportByIdResponse(string Region, int RegisteredContactCount, int RegisteredPhoneNumberCount);
     public class ReportEndpoints : ICarterModule

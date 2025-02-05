@@ -46,7 +46,7 @@ namespace ContactService.Api.Controllers
         public async Task<ActionResult> CreateContact([FromBody] CreateContactRequest request)
         {
             var result = await _mediator.Send(_mapper.Map<CreateContactCommand>(request));
-            return Ok(new ApiResponse<int>().Success(result, 200));
+            return Ok(new ApiResponse<Guid>().Success(result, 200));
         }
 
         [HttpDelete("{id}")]
@@ -60,7 +60,7 @@ namespace ContactService.Api.Controllers
         public async Task<ActionResult> AddContactInfo([FromBody] CreateContactInfoRequest contactInfoDto)
         {
             var result = await _mediator.Send(_mapper.Map<CreateContactInfoCommand>(contactInfoDto));
-            return Ok(new ApiResponse<int>().Success(result, 200));
+            return Ok(new ApiResponse<Guid>().Success(result, 200));
         }
 
         [HttpDelete("{id}/info/{infoId}")]

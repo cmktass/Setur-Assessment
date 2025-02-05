@@ -3,6 +3,17 @@
 ## 📌 Proje Kapsamı
 Bu proje, **.NET 8** ve modern yazılım geliştirme prensipleri ile oluşturulmuş **telefon rehberi uygulamasıdır**.
 Mikroservis mimarisine dayalı olarak inşa edilmiş olup, **CQRS, Clean Architecture, Vertical Slice ve DDD** prensiplerine uygun geliştirilmiştir.
+Servicelerde kullanılmak üzere base libary eklenmiştir. Bu base libary'de 
+-ValidationBehavior,
+-BaseExceptionTypes,
+-BaseDbContext,
+-RabbitMQConfiguration,
+-CorrelationIdMiddleware
+işlemleri eklenmiştir.
+Projeye eklenilmesi planlananlar
+retry mekanizmaları,
+logging,
+unit, integration tests.
 
 ---
 
