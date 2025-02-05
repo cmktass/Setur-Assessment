@@ -1,4 +1,5 @@
 ﻿using Core.Events;
+using Core.MasstransitConfiguration;
 
 namespace ContactService.Application.Commands
 {
@@ -7,13 +8,13 @@ namespace ContactService.Application.Commands
     public record PrepareContactInfoReportCommandHandler : IRequestHandler<PrepareContactInfoReportCommand, string>
     {
         private readonly IContactServiceDbContext _context;
-        /*private readonly Publisher _publisher;*/
+        private readonly Publisher _publisher;
         private readonly IMapper _mapper;
 
-        public PrepareContactInfoReportCommandHandler(IContactServiceDbContext context,/* Publisher publisher*/ IMapper mapper)
+        public PrepareContactInfoReportCommandHandler(IContactServiceDbContext context, Publisher publisher, IMapper mapper)
         {
             _context = context;
-            /*_publisher = publisher;*/
+            _publisher = publisher;
             _mapper = mapper;
         }
         public async Task<string> Handle(PrepareContactInfoReportCommand request, CancellationToken cancellationToken)
@@ -21,13 +22,15 @@ namespace ContactService.Application.Commands
             var contats = await _context.Contacts.Include(c => c.ContactInfos.Where(x => !x.IsDeleted)).Where(x => !x.IsDeleted).ToListAsync();
             if(contats is null)
                 throw new Exception("Contacts not found");
-            /*await _publisher.Publish(PrepareEvent(contats));*/
+            var event1 = new LocationReportRequestedEvent();
+            event1.ContactEventDtos = PrepareEvent(contats);
+            await _publisher.Publish<LocationReportRequestedEvent>(event1);
             _context.Reports.Add(new Report { CreatedDate = DateTime.Now, CreatedId = Guid.NewGuid() });
             return "Report prepering";
         }
-        private LocationReportRequestedEvent PrepareEvent(List<Contact> contact)
+        private List<ContactEventDto> PrepareEvent(List<Contact> contact)
         {
-            return _mapper.Map<LocationReportRequestedEvent>(contact);
+            return _mapper.Map<List<ContactEventDto>>(contact);
         }
     }
 }

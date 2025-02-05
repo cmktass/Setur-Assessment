@@ -24,6 +24,7 @@ namespace ContactService.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<Publisher>();
+            builder.Services.AddInfrastructureServices(builder.Configuration).AddApplicationServices();
             builder.Services.AddMessageBroker(Assembly.GetExecutingAssembly(), builder.Configuration);
             builder.Services.AddSingleton<IMapper, Mapper>();
             var app = builder.Build();

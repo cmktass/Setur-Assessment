@@ -31,7 +31,11 @@ namespace Core.MasstransitConfiguration
                         h.Username(rabbitSettings.Username);
                         h.Password(rabbitSettings.Password);
                     });
-                    config(cfg, context);
+
+                    cfg.Durable = true;
+
+                    if(config is not null)
+                        config(cfg, context);
                     // Mesajların alınacağı receive endpoint tanımlaması
                 });
             });
