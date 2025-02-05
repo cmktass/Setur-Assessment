@@ -7,6 +7,7 @@ using Core.MasstransitConfiguration;
 using MapsterMapper;
 using MassTransit;
 using System;
+using System.Reflection;
 
 namespace ContactService.Api
 {
@@ -23,22 +24,7 @@ namespace ContactService.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<Publisher>();
-            builder.Services.AddApplicationServices().AddInfrastructureServices(builder.Configuration);
-            /*builder.Services.AddMassTransit(x =>
-            {
-                x.SetKebabCaseEndpointNameFormatter();
-
-                x.UsingRabbitMq((context, cfg) =>
-                {
-                    cfg.Host("rabbitmq://localhost", h =>
-                    {
-                        h.Username("guest");
-                        h.Password("guest");
-                    });
-
-                    cfg.ConfigureEndpoints(context);
-                });
-            });*/
+            builder.Services.AddMessageBroker(Assembly.GetExecutingAssembly(), builder.Configuration);
             builder.Services.AddSingleton<IMapper, Mapper>();
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())
