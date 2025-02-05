@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+
 namespace ContactService.Application.Commands
 {
     public record CreateContactCommand(string FirstName, string LastName, string Company) : IRequest<int>;
@@ -18,4 +20,13 @@ namespace ContactService.Application.Commands
         }
     }
 
+    public class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
+    {
+        public CreateContactCommandValidator()
+        {
+            RuleFor(x => x.FirstName).NotEmpty().NotNull().MaximumLength(50);
+            RuleFor(x => x.LastName).NotEmpty().NotNull().MaximumLength(50);
+            RuleFor(x => x.Company).MaximumLength(50);
+        }
+    }
 }

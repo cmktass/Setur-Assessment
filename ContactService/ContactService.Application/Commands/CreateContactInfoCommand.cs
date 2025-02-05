@@ -1,4 +1,7 @@
 ﻿
+using Core.Exception;
+using FluentValidation;
+
 namespace ContactService.Application.Commands
 {
     public record CreateContactInfoCommand(Guid PersonId, int ContactTypeId, string Value) : IRequest<int>;
@@ -14,9 +17,18 @@ namespace ContactService.Application.Commands
         {
             var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == request.PersonId && !c.IsDeleted);
             if(contact is null)
-                throw new Exception("Contact not found");
+                throw new BusinessException("Contacts not found", System.Net.HttpStatusCode.NotFound);
             contact.AddContactInfo(new ContactInfo(request.Value, request.ContactTypeId));
             return await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+    }
+    public class CreateContactInfoCommandValidator : AbstractValidator<CreateContactInfoCommand>
+    {
+        public CreateContactInfoCommandValidator()
+        {
+            RuleFor(x => x.PersonId).NotEmpty().NotNull();
+            RuleFor(x => x.ContactTypeId).NotEmpty().GreaterThan(0).NotNull();
+            RuleFor(x => x.Value).NotNull().MaximumLength(50);
         }
     }
 

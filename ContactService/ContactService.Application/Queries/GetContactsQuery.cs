@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+
 namespace ContactService.Application.Queries
 {
     public record GetContactsQuery() : IRequest<List<ContactDto>>;
@@ -15,8 +17,13 @@ namespace ContactService.Application.Queries
         {
             var contacts = await _dbContext.Contacts.Where(c => !c.IsDeleted).ToListAsync(cancellationToken);
             if(contacts is null)
-                throw new Exception("Contacts not found");
+                throw new BusinessException("Contacts not found", System.Net.HttpStatusCode.NotFound);
             return _mapper.Map<List<ContactDto>>(contacts);
         }
+    }
+
+    public class GetContactsQueryValidator : AbstractValidator<GetContactsQuery>
+    {
+        
     }
 }

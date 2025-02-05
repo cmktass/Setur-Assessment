@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+
 namespace ContactService.Application.Queries
 {
     public record GetContactWithInfosQuery(Guid Id) : IRequest<ContactDto>;
@@ -17,8 +19,16 @@ namespace ContactService.Application.Queries
         {
             var contact = await _dbContext.Contacts.AsNoTracking().Include(ci => ci.ContactInfos.Where(x => !x.IsDeleted)).FirstOrDefaultAsync(c => c.Id == request.Id && !c.IsDeleted);
             if (contact is null)
-                throw new Exception("Contact not found");
+                throw new BusinessException("Contacts not found", System.Net.HttpStatusCode.NotFound);
             return _mapper.Map<ContactDto>(contact);
+        }
+    }
+
+    public class GetContactWithInfosQueryValidator : AbstractValidator<GetContactWithInfosQuery>
+    {
+        public GetContactWithInfosQueryValidator()
+        {
+            RuleFor(x => x.Id).NotEmpty();
         }
     }
 

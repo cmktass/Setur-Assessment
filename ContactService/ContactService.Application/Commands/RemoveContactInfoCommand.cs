@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+
 namespace ContactService.Application.Commands
 {
     public record RemoveContactInfoCommand(Guid Id, int InfoId) : IRequest;
@@ -12,14 +14,23 @@ namespace ContactService.Application.Commands
         }
         public async Task Handle(RemoveContactInfoCommand request, CancellationToken cancellationToken)
         {
-            var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == request.Id && !c.IsDeleted);
+            var contact = await _dbContext.Contacts.Include(ci => ci.ContactInfos.Where(x => !x.IsDeleted)).FirstOrDefaultAsync(c => c.Id == request.Id && !c.IsDeleted);
             if (contact is null)
-                throw new Exception("Contact not found");
+                throw new BusinessException("Contacts not found", System.Net.HttpStatusCode.NotFound);
             var contactInfo = contact.ContactInfos.FirstOrDefault(ci => ci.Id == request.InfoId && !ci.IsDeleted);
             if (contactInfo is null)
-                throw new Exception("Contact info not found");
+                throw new BusinessException("Contact info not found", System.Net.HttpStatusCode.NotFound);
             contact.ContactInfos.Remove(contactInfo);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }    
+    }
+
+    public class RemoveContactInfoCommandValidator : AbstractValidator<RemoveContactInfoCommand>
+    {
+        public RemoveContactInfoCommandValidator()
+        {
+            RuleFor(x => x.Id).NotEmpty().NotNull();
+            RuleFor(x => x.InfoId).NotEmpty().GreaterThan(0).NotNull();
+        }
     }
 }

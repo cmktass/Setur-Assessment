@@ -1,5 +1,7 @@
 ﻿using Core.Events;
+using Core.Exception;
 using Core.MasstransitConfiguration;
+using FluentValidation;
 
 namespace ContactService.Application.Commands
 {
@@ -21,16 +23,22 @@ namespace ContactService.Application.Commands
         {
             var contats = await _context.Contacts.Include(c => c.ContactInfos.Where(x => !x.IsDeleted)).Where(x => !x.IsDeleted).ToListAsync();
             if(contats is null)
-                throw new Exception("Contacts not found");
-            var event1 = new LocationReportRequestedEvent();
-            event1.ContactEventDtos = PrepareEvent(contats);
-            await _publisher.Publish<LocationReportRequestedEvent>(event1);
+                throw new BusinessException("Contacts not found", System.Net.HttpStatusCode.NotFound);
+            var locationReportRequestedEvent = PrepareEvent(contats);
+            await _publisher.Publish<LocationReportRequestedEvent>(locationReportRequestedEvent);
             _context.Reports.Add(new Report { CreatedDate = DateTime.Now, CreatedId = Guid.NewGuid() });
             return "Report prepering";
         }
-        private List<ContactEventDto> PrepareEvent(List<Contact> contact)
+        private LocationReportRequestedEvent PrepareEvent(List<Contact> contact)
+        {   
+            var locationReportRequestedEvent = new LocationReportRequestedEvent();
+            locationReportRequestedEvent.ContactEventDtos = _mapper.Map<List<ContactEventDto>>(contact);
+            return locationReportRequestedEvent;
+        }
+
+        public class PrepareContactInfoReportCommandValidator : AbstractValidator<PrepareContactInfoReportCommand>
         {
-            return _mapper.Map<List<ContactEventDto>>(contact);
+
         }
     }
 }
