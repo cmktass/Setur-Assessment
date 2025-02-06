@@ -3,7 +3,7 @@
 ## 📌 Proje Kapsamı
 Bu proje, **.NET 8** ve modern yazılım geliştirme prensipleri ile oluşturulmuş **telefon rehberi uygulamasıdır**.
 Mikroservis mimarisine dayalı olarak inşa edilmiş olup, **CQRS, Clean Architecture, Vertical Slice ve DDD** prensiplerine uygun geliştirilmiştir.
-Servicelerde kullanılmak üzere base libary eklenmiştir. Bu base libary'de 
+- **Servicelerde kullanılmak üzere base libary eklenmiştir. Bu base libary'de **
 -ValidationBehavior,
 -BaseExceptionTypes,
 -BaseDbContext,
@@ -53,5 +53,6 @@ cd Setur-Assessment
 ```
 > 🛠 Bu komut, **PostgreSQL, RabbitMQ'yu** çalıştıracaktır.
 > Daha sonra visual studio üzerinden solution'u açıp Multiplestartup projectten ContractService.Api ve ReportService.Api Start seçilerek proje ayağa kaldırılabilir.
-
+> Code first ile db yapısı oluşturulmuştur. İnitial migration oluşturulmuştur. Auto migration vardır. Contact Service'e proje ayağa kalktığında dummy data yükleyecektir.
+> NOT: Localinizde PostgreSQL ve rabbitmq yüklüyse OS'nizin servicelerinden kapatınız. Dockerdada çalışacağın için port çakışması yaşayacaktır.
 
