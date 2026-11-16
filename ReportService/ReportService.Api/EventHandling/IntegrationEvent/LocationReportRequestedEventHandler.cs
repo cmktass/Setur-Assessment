@@ -2,15 +2,16 @@
 using MassTransit;
 
 namespace ReportService.Api.EventHandling.IntegrationEvent
-{
+{   
     public class LocationReportRequestedEventHandler : IConsumer<LocationReportRequestedEvent>
-    {
+    {   
         public enum ContactTypesEnum
         {
             Phone = 1,
             EMail = 2,
             Region = 3
         }
+        
         private readonly ReportDbContext _dbContext;
         public LocationReportRequestedEventHandler(ReportDbContext dbContext)
         {
